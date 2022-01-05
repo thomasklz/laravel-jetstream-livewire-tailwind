@@ -8,12 +8,9 @@ use App\Models\DatosPersona;
 class Persona extends Component
 {
 
-    public $count=0;
+  
     public $nombre, $apellido, $cedula, $direccion, $telefono;
-    public function increment()
-    {
-        $this->count++;
-    }
+     
     public function guardar(){
        
  
