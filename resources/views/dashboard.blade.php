@@ -16,12 +16,14 @@
                                 d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z"
                                 fill="white"></path>
                         </svg>
+                        <a href="{{ url('/dashboard') }}">
                         <span class="text-white text-2xl mx-2 font-semibold">App Doctor</span>
+                    </a>
                     </div>
                 </div>
 
                 <nav class="mt-10">
-                    <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="/">
+                    <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="{{ url('/persona') }}">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,16 +37,8 @@
             </div>
             <div class="flex-1 flex flex-col overflow-hidden">
                 <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
-                    <div class="flex items-center">
-                        <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
-                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-
-                        <div class="relative mx-4 lg:mx-0">
+                    <div class="flex items-center w-80">
+                        <div class="relative mx-12 w-full lg:mx-0">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
                                 <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                                     <path
@@ -55,7 +49,7 @@
                                 </svg>
                             </span>
 
-                            <input class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600"
+                            <input class="form-input w-full sm:w-full rounded-md pl-10 pr-4 focus:border-indigo-600"
                                 type="text" placeholder="Search">
                         </div>
                     </div>

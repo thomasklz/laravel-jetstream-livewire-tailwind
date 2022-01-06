@@ -1,4 +1,4 @@
-<div class="bg-gray-300 w-full p-9 grid-flow-col ">
+<div class="bg-gray-300 w-full p-9  ">
     <form action="">
 
         <div class="relative mt-1">
