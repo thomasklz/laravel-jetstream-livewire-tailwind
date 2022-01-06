@@ -10,6 +10,6 @@ class DatosPersona extends Model
     use HasFactory;
     protected $table='datos_personas';
     public $timestamps=false;
-    
+    public $fillable=['nombre','apellido', 'cedula','direccion','telefono'];
 
 }
