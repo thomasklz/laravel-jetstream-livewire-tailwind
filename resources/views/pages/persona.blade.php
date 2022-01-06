@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('title', 'Persona')
-@section('content')
+@section('title', 'Gestion Personas')
+@section('contenido')
 <livewire:persona/> 
 @endsection
