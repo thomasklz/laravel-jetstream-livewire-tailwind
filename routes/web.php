@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
-    Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');
+    Route::get('/', function () { return view('dashboard');})->name('dashboard');
     Route::get('/persona', function () { return view('pages.persona');});
     Route::get('/plantilla', function () { return view('pages.plantilla');})->name('plantilla');
 });
