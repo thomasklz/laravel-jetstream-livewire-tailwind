@@ -12,7 +12,7 @@ class Persona extends Component
     protected $rules = [
         'nombre' => 'required',
         'apellido' => 'required',
-        'cedula' => 'required|numeric|min:10|max:10',
+        'cedula' => 'required|numeric|min:10',
         'direccion' => 'required',
         'telefono' => 'required|numeric|min:10',
     ];
