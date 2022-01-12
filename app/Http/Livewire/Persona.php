@@ -47,7 +47,7 @@ class Persona extends Component
    }
     public function render()
     {
-        $personas=DatosPersona::all();
+        $personas= DatosPersona::all();
         return view('livewire.persona',['personas'=>$personas]);
     }
 
@@ -58,5 +58,7 @@ class Persona extends Component
     $this->direccion=""; 
     $this->telefono="";
    }
+
+  
     
 }

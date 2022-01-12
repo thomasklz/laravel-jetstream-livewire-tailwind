@@ -1,7 +1,5 @@
 
 <div class="bg-gray-300 w-full p-9  ">
-
- @include('mensajes.success')
     <form action="">
       @include('mensajes.success')
         <div class="relative mt-1">
@@ -11,7 +9,6 @@
             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>
           </div>
           <input type="text"  wire:model="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar nombres" required>
-         
         </div>
         <span class="bg-red-100 text-red-800 text-xs font-semibold rounded dark:bg-red-200 dark:text-red-900">
           @error('nombre') <span class="error">{{ $message }}</span> @enderror
@@ -54,12 +51,9 @@
           </span>
           <div class="relative mt-1">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" 
-              fill="currentColor" viewBox="0 0 20 20" 
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.924 2.617a.997.997 0 00-.215-.322l-.004-.004A.997.997 0 0017 2h-4a1 1 0 100 2h1.586l-3.293 3.293a1 1 0 001.414 1.414L16 5.414V7a1 1 0 102 0V3a.997.997 0 00-.076-.383z" />
-              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />   
-             </svg>
+              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
             </div>
             <input type="text"  wire:model="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar número de teléfono" required>
           </div>
@@ -76,93 +70,6 @@
             Registrar
         </button>
     </form>
-
-    <div class="flex flex-col mt-8">
-      <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-          <div
-              class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-              <table class="min-w-full">
-                  <thead>
-                      <tr>
-                          <th
-                              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                              nombre</th>
-                          <th
-                              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                              Apellido</th>
-                          <th
-                              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                              Cédula</th>
-                          <th
-                              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                              Dirección</th>
-                              <th
-                              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                              Teléfono</th>
-                          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                      </tr>
-                  </thead>
-
-                  <tbody class="bg-white">
-@foreach($personas as $persona)
-  
-
-
-                      <tr>
-                          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                              <div class="flex items-center">
-                                  <div class="flex-shrink-0 h-10 w-10">
-                                      <img class="h-10 w-10 rounded-full"
-                                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                          alt="">
-                                  </div>
-
-                                  <div class="ml-4">
-                                      <div class="text-sm leading-5 font-medium text-gray-900">
-                                          {{ $persona->nombre }}
-                                      </div>
-                                     
-                                  </div>
-                              </div>
-                          </td>
-
-                          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                              <div class="text-sm leading-5 text-gray-900">
-                                {{ $persona->apellido }}
-                              </div>
-                          
-                          </td>
-                          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div class="text-sm leading-5 text-gray-900">
-                              {{ $persona->cedula }}
-                            </div>
-                        
-                        </td>
-                          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div class="text-sm leading-5 text-gray-900">
-                              {{ $persona->direccion }}
-                            </div>
-                          </td>
-
-                          <td
-                              class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                              <div class="text-sm leading-5 text-gray-900">
-                                {{ $persona->telefono }}
-                              </div></td>
-
-                          <td
-                              class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                          </td>
-                    
-                      </tr>
-
-                      @endforeach
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
 </div>
 <div class="flex flex-col mt-8">
   <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
