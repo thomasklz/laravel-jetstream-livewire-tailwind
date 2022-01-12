@@ -7,8 +7,8 @@ use App\Models\DatosPersona;
 
 class Persona extends Component
 {
-
-    public $nombre, $apellido, $cedula, $direccion, $telefono;
+    public $edit=true;
+    public $nombre, $apellido, $cedula, $direccion, $telefono, $idPersona;
     protected $rules = [
         'nombre' => 'required',
         'apellido' => 'required',
@@ -34,16 +34,34 @@ class Persona extends Component
     public function guardar(){
        $this->validate();
        $persona= new DatosPersona();
-       $persona->nombre=$this->nombre;
-       $persona->apellido=$this->apellido;
-       $persona->cedula=$this->cedula;
-       $persona->direccion=$this->direccion;
-       $persona->telefono=$this->telefono;
-       $persona->id_tipo_personas=1;
-       $persona->id_horario_atencion=1;
-       $persona->save();
-       $this->limpiar();
-       session()->flash('success', 'Persona ingresada correctamente');
+       if($this->edit==true){
+        $persona->nombre=$this->nombre;
+        $persona->apellido=$this->apellido;
+        $persona->cedula=$this->cedula;
+        $persona->direccion=$this->direccion;
+        $persona->telefono=$this->telefono;
+        $persona->id_tipo_personas=1;
+        $persona->id_horario_atencion=1;
+        $persona->save();
+        $this->limpiar();
+        session()->flash('success', 'Persona ingresada correctamente');
+        $this->edit=true;
+       }else{
+
+        $persona=DatosPersona::find($this->idPersona);
+         $persona->nombre= $this->nombre;
+         $persona->apellido= $this->apellido;
+        $persona->cedula=$this->cedula;
+        $persona->direccion=$this->direccion; 
+        $persona->telefono=$this->telefono;
+        $persona->save();
+        $this->limpiar();
+        //$persona->id=$this->idPersona;
+        session()->flash('Update', 'Persona actualizada correctamente');
+        $this->edit=true;
+
+       }
+     
    }
     public function render()
     {
@@ -58,7 +76,18 @@ class Persona extends Component
     $this->direccion=""; 
     $this->telefono="";
    }
-
+    public function edit($id){
+       
+        $persona=DatosPersona::find($id);
+        $this->nombre= $persona->nombre;
+        $this->apellido=$persona->apellido;
+        $this->cedula=$persona->cedula;
+        $this->direccion=$persona->direccion; 
+        $this->telefono=$persona->telefono;
+        $this->idPersona=$persona->id;
+        $this->edit=false;
+        
+    }
   
     
 }
