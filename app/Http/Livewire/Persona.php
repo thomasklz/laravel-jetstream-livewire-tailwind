@@ -47,7 +47,8 @@ class Persona extends Component
    }
     public function render()
     {
-        return view('livewire.persona');
+        $personas= DatosPersona::all();
+        return view('livewire.persona',['personas'=>$personas]);
     }
 
    public function limpiar(){
@@ -57,5 +58,7 @@ class Persona extends Component
     $this->direccion=""; 
     $this->telefono="";
    }
+
+  
     
 }
