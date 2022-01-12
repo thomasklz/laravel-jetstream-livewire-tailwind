@@ -1,8 +1,9 @@
+
 <div class="bg-gray-300 w-full p-9  ">
 
  @include('mensajes.success')
     <form action="">
-
+      @include('mensajes.success')
         <div class="relative mt-1">
           <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" 
@@ -12,10 +13,9 @@
           <input type="text"  wire:model="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar nombres" required>
          
         </div>
-        <span class="bg-red-100 text-red-800 text-xs font-semibold  rounded dark:bg-red-200 dark:text-red-900">
+        <span class="bg-red-100 text-red-800 text-xs font-semibold rounded dark:bg-red-200 dark:text-red-900">
           @error('nombre') <span class="error">{{ $message }}</span> @enderror
         </span>
-       
         <div class="relative mt-1">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" 
@@ -24,7 +24,9 @@
               </div>
             <input type="text"  wire:model="apellido" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar apellidos" required>
           </div>
+        <span class="bg-red-100 text-red-800 text-xs font-semibold rounded dark:bg-red-200 dark:text-red-900">
           @error('apellido') <span class="error">{{ $message }}</span> @enderror
+        </span>
           <div class="relative mt-1">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" 
@@ -35,8 +37,9 @@
             </div>
             <input type="text"  wire:model="cedula" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar número de cédula" required>
           </div>
+        <span class="bg-red-100 text-red-800 text-xs font-semibold rounded dark:bg-red-200 dark:text-red-900">
           @error('cedula') <span class="error">{{ $message }}</span> @enderror
-          <div class="relative mt-1">
+        </span>
           <div class="relative mt-1">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +49,9 @@
             </div>
             <input type="text"  wire:model="direccion"class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar domicilio" required>
           </div>
-          @error('direccion') <span class="error">{{ $message }}</span> @enderror
-          <div class="relative mt-1">
+          <span class="bg-red-100 text-red-800 text-xs font-semibold  rounded dark:bg-red-200 dark:text-red-900">
+            @error('direccion') <span class="error">{{ $message }}</span> @enderror
+          </span>
           <div class="relative mt-1">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" 
@@ -59,10 +63,16 @@
             </div>
             <input type="text"  wire:model="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Ingresar número de teléfono" required>
           </div>
-          @error('telefono') <span class="error">{{ $message }}</span> @enderror
-          <div class="relative mt-1">
+          <span class="bg-red-100 text-red-800 text-xs font-semibold  rounded dark:bg-red-200 dark:text-red-900">
+            @error('telefono') <span class="error">{{ $message }}</span> @enderror
+          </span>
+          <div></div>
         <button type="submit" wire:click.prevent="guardar"
-            class="border-4 border-gray-300 text-white bg-green-700 hover:bg-green-500 focus:ring-4 focus:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-500 dark:focus:bg-green-500">
+            class="mt-4 text-white 
+            bg-green-700 
+            hover:bg-green-500 
+            font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+            dark:bg-green-500 dark:hover:bg-green-500 dark:focus:bg-green-500">
             Registrar
         </button>
     </form>
@@ -151,6 +161,344 @@
                   </tbody>
               </table>
           </div>
+      </div>
+  </div>
+</div>
+<div class="flex flex-col mt-8">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div
+          class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+          <table class="min-w-full">
+              <thead>
+                  <tr>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Name</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Title</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Status</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Role</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                  </tr>
+              </thead>
+
+              <tbody class="bg-white">
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                      alt="">
+                              </div>
+
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">
+                                      John Doe
+                                  </div>
+                                  <div class="text-sm leading-5 text-gray-500">
+                                      john@example.com</div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900">Software Engineer
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">Web dev</div>                                                </td>                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          Owner</td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
       </div>
   </div>
 </div>
