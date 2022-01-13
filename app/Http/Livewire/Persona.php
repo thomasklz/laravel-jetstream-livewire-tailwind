@@ -4,11 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\DatosPersona;
+use Livewire\WithPagination;
 
 class Persona extends Component
 {
-    public $edit=true;
+    use WithPagination;
     public $nombre, $apellido, $cedula, $direccion, $telefono, $idPersona;
+    public $InsertUpdate=true, $search, $valor=5;
+
     protected $rules = [
         'nombre' => 'required',
         'apellido' => 'required',
@@ -33,8 +36,9 @@ class Persona extends Component
     }
     public function guardar(){
        $this->validate();
-       $persona= new DatosPersona();
-       if($this->edit==true){
+      
+       if($this->InsertUpdate){
+        $persona= new DatosPersona();
         $persona->nombre=$this->nombre;
         $persona->apellido=$this->apellido;
         $persona->cedula=$this->cedula;
@@ -45,27 +49,27 @@ class Persona extends Component
         $persona->save();
         $this->limpiar();
         session()->flash('success', 'Persona ingresada correctamente');
-        $this->edit=true;
        }else{
-
-        $persona=DatosPersona::find($this->idPersona);
-         $persona->nombre= $this->nombre;
-         $persona->apellido= $this->apellido;
-        $persona->cedula=$this->cedula;
-        $persona->direccion=$this->direccion; 
-        $persona->telefono=$this->telefono;
-        $persona->save();
+        $p=DatosPersona::find($this->idPersona);
+        $p->nombre=$this->nombre;
+        $p->apellido=$this->apellido;
+        $p->cedula=$this->cedula;
+        $p->direccion=$this->direccion;
+        $p->telefono=$this->telefono;
+        $p->save();
         $this->limpiar();
-        //$persona->id=$this->idPersona;
-        session()->flash('Update', 'Persona actualizada correctamente');
-        $this->edit=true;
-
+        session()->flash('success', 'Registro actualizado');
+        $this->InsertUpdate=true;
        }
-     
+      
    }
     public function render()
     {
-        $personas= DatosPersona::all();
+        $personas=DatosPersona::where('nombre','like','%'.$this->search.'%')
+                            ->orwhere('apellido','like','%'.$this->search.'%')
+                            ->orwhere('cedula','like','%'.$this->search.'%')
+                            ->orderBy('id','desc')->paginate($this->valor);
+       //$personas= DatosPersona::orderBy('id','desc')->paginate(5);
         return view('livewire.persona',['personas'=>$personas]);
     }
 
@@ -76,18 +80,22 @@ class Persona extends Component
     $this->direccion=""; 
     $this->telefono="";
    }
-    public function edit($id){
-       
-        $persona=DatosPersona::find($id);
-        $this->nombre= $persona->nombre;
-        $this->apellido=$persona->apellido;
-        $this->cedula=$persona->cedula;
-        $this->direccion=$persona->direccion; 
-        $this->telefono=$persona->telefono;
-        $this->idPersona=$persona->id;
-        $this->edit=false;
-        
-    }
-  
-    
+
+  public function editar($id){
+   $persona=DatosPersona::find($id);
+   $this->nombre=$persona->nombre;
+   $this->apellido=$persona->apellido;
+   $this->cedula=$persona->cedula;
+   $this->direccion=$persona->direccion; 
+   $this->telefono=$persona->telefono;
+   $this->idPersona=$persona->id;
+   $this->InsertUpdate=false;
+  }
+
+ public function delete($id){
+    $p=DatosPersona::find($id);
+    $p->delete();
+    session()->flash('error', 'Dato eliminado');
+ }
+ 
 }
