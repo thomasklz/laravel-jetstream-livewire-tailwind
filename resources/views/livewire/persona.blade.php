@@ -1,6 +1,26 @@
 <div class="bg-gray-300 w-full p-9  ">
   <form action="">
     @include('mensajes.success')
+
+
+
+    <div class="relative mt-1">
+      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+        </svg>
+      </div>
+      <select wire:model="tipopersona" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
+        <option value="0">Seleccione...</option>  
+        @foreach($tipos as $key => $value)
+          <option value="{{ $value->id }}">{{ $value->tipo }}</option>  
+        @endforeach
+       
+        
+      </select>
+    </div>
+
     <div class="relative mt-1">
       <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
         <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
@@ -92,31 +112,37 @@
   </form>
   <div class="flex flex-col mt-8">
     @include('mensajes.error')
-    <div class="h-max w-auto">
-      <div class="flex items-end mb-3">
-        <div class="revue-form-actions">
-          <select wire:model="valor"  class="mr-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-        <div class="relative mr-3 ml-3 w-full revue-form-group">
-          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <input wire:model="search" class="revue-form-field bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar..." type="text" >
-        </div>
-        </div>
-    </div>
+    <select wire:model="tamano">
+      <option value="2">2</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    
+    <div class="flex items-center w-80 ">
+      <div class="relative mx-12 w-full lg:mx-0 mb-4 ">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  </path>
+              </svg>
+          </span>
+
+          <input  wire:model="search"
+          class="form-input w-full sm:w-full rounded-md pl-10 pr-4 focus:border-indigo-600" 
+          type="text" placeholder="Buscar persona...">
+      </div>
+  </div>
+
+
+
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
         <table class="min-w-full">
           <thead>
             <tr>
+              <th
+                class="px-6 py-3  border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Tipo</th>
               <th
                 class="px-6 py-3  border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                 Nombre</th>
@@ -138,6 +164,15 @@
           <tbody class="bg-white">
             @foreach($personas as $persona)
             <tr>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div class="flex items-center">
+                  <div class="ml-4">
+                    <div class="text-sm leading-5  text-gray-900">
+                      {{ $persona->id_tipo_personas }}
+                    </div>
+                  </div>
+                </div>
+              </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <div class="flex items-center">
                   <div class="ml-4">
@@ -195,4 +230,11 @@
     </div>
     {{ $personas->links() }}
   </div>
+  <input wire:model="buscar" type="text" class="bg-green-200" placeholder="Buscar por cédula"> 
+  <button class="bg-green-600" wire:click="buscar">Buscar</button>
+<div>
+  <label for="">{{ $nombre1 }}</label>
+  <label for="">{{ $apellido1 }}</label>
+</div>
+ 
 </div>

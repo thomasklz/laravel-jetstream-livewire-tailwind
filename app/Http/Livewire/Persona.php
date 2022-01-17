@@ -4,13 +4,15 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\DatosPersona;
+use App\Models\tipospersona;
 use Livewire\WithPagination;
 
 class Persona extends Component
 {
     use WithPagination;
     public $nombre, $apellido, $cedula, $direccion, $telefono, $idPersona;
-    public $InsertUpdate=true, $search, $valor=5;
+    public $InsertUpdate=true, $search, $buscar;
+    public $nombre1="", $apellido1="", $tamano=5, $tipopersona;
 
     protected $rules = [
         'nombre' => 'required',
@@ -44,7 +46,7 @@ class Persona extends Component
         $persona->cedula=$this->cedula;
         $persona->direccion=$this->direccion;
         $persona->telefono=$this->telefono;
-        $persona->id_tipo_personas=1;
+        $persona->id_tipo_personas=$this->tipopersona;
         $persona->id_horario_atencion=1;
         $persona->save();
         $this->limpiar();
@@ -65,12 +67,15 @@ class Persona extends Component
    }
     public function render()
     {
+        $tiposPersona=tipospersona::all();
+      
         $personas=DatosPersona::where('nombre','like','%'.$this->search.'%')
-                            ->orwhere('apellido','like','%'.$this->search.'%')
-                            ->orwhere('cedula','like','%'.$this->search.'%')
-                            ->orderBy('id','desc')->paginate($this->valor);
-       //$personas= DatosPersona::orderBy('id','desc')->paginate(5);
-        return view('livewire.persona',['personas'=>$personas]);
+                                ->orwhere('apellido','like','%'.$this->search.'%')
+                                ->orwhere('cedula','like','%'.$this->search.'%')
+                                ->orderBy('nombre','desc')
+                                ->paginate($this->tamano);
+       // $personas= DatosPersona::orderBy('id','desc')->paginate(5);
+        return view('livewire.persona',['personas'=>$personas, 'tipos'=> $tiposPersona]);
     }
 
    public function limpiar(){
@@ -97,5 +102,16 @@ class Persona extends Component
     $p->delete();
     session()->flash('error', 'Dato eliminado');
  }
+  public function buscar(){
+
+    $p=DatosPersona::where('cedula',$this->buscar)
+                    ->get();
+    $this->nombre1=$p[0]->nombre;
+    $this->apellido1=$p[0]->apellido;
+             
+    
+
+
+  }
  
 }
