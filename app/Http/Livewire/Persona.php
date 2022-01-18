@@ -5,12 +5,14 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\DatosPersona;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
+use App\Models\TipoPersona;
 
 class Persona extends Component
 {
     use WithPagination;
     public $nombre, $apellido, $cedula, $direccion, $telefono, $idPersona;
-    public $InsertUpdate=true, $search, $valor=5;
+    public $InsertUpdate=true, $search, $valor=5,$tipopersona;
 
     protected $rules = [
         'nombre' => 'required',
@@ -56,6 +58,7 @@ class Persona extends Component
         $p->cedula=$this->cedula;
         $p->direccion=$this->direccion;
         $p->telefono=$this->telefono;
+        $p->id_tipo_personas=$this->tipopersona;
         $p->save();
         $this->limpiar();
         session()->flash('success', 'Registro actualizado');
@@ -65,15 +68,24 @@ class Persona extends Component
    }
     public function render()
     {
-        $personas=DatosPersona::where('nombre','like','%'.$this->search.'%')
-                            ->orwhere('apellido','like','%'.$this->search.'%')
-                            ->orwhere('cedula','like','%'.$this->search.'%')
-                            ->orderBy('id','desc')->paginate($this->valor);
-       //$personas= DatosPersona::orderBy('id','desc')->paginate(5);
-        return view('livewire.persona',['personas'=>$personas]);
+        $tiposPersona=TipoPersona::all();
+        $personas=DB::table('datos_personas')
+                    ->join('tipo_personas', 'datos_personas.id_tipo_personas','=','tipo_personas.id')
+                    ->select('datos_personas.*','tipo_personas.tipo')
+                    ->where('nombre','like','%'.$this->search.'%')
+                    ->orwhere('apellido','like','%'.$this->search.'%')
+                    ->orwhere('cedula','like','%'.$this->search.'%')
+                    ->orderBy('id','desc')->paginate($this->valor);
+                    
+        // $personas=DatosPersona::where('nombre','like','%'.$this->search.'%')
+        //                     ->orwhere('apellido','like','%'.$this->search.'%')
+        //                     ->orwhere('cedula','like','%'.$this->search.'%')
+        //                     ->orderBy('id','desc')->paginate($this->valor);
+        return view('livewire.persona',['personas'=>$personas, 'tipos'=> $tiposPersona]);
     }
 
    public function limpiar(){
+    $this->tipopersona="";
     $this->nombre="";
     $this->apellido="";
     $this->cedula="";
@@ -88,6 +100,7 @@ class Persona extends Component
    $this->cedula=$persona->cedula;
    $this->direccion=$persona->direccion; 
    $this->telefono=$persona->telefono;
+   $this->tipopersona=$persona->id_tipo_personas;
    $this->idPersona=$persona->id;
    $this->InsertUpdate=false;
   }

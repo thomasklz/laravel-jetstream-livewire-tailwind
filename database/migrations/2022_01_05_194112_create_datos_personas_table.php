@@ -20,7 +20,7 @@ class CreateDatosPersonasTable extends Migration
             $table->string('cedula');
             $table->string('direccion');
             $table->string('telefono');
-            $table->integer('id_tipo_personas');
+            $table->foreignId('id_tipo_personas')->constrained('tipo_personas');
             $table->integer('id_horario_atencion');
         });
     }
