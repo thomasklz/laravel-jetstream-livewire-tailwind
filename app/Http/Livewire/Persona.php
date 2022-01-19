@@ -12,7 +12,7 @@ class Persona extends Component
 {
     use WithPagination;
     public $nombre, $apellido, $cedula, $direccion, $telefono, $idPersona;
-    public $InsertUpdate=true, $search, $valor=5,$tipopersona;
+    public $InsertUpdate=true, $search, $valor=5,$tipopersona,$ItiposPersona;
 
     protected $rules = [
         'nombre' => 'required',
@@ -31,6 +31,7 @@ class Persona extends Component
         'telefono.required' => 'El campo teléfono no puede estar vacío',
         'telefono.numeric' => 'Solo se admiten números',
         'telefono.min' => 'Minímo 10 números',
+        'ItiposPersona.required' => 'El campo es requerido',
     ];
     public function updated($propertyName)
     {
@@ -81,6 +82,7 @@ class Persona extends Component
         //                     ->orwhere('apellido','like','%'.$this->search.'%')
         //                     ->orwhere('cedula','like','%'.$this->search.'%')
         //                     ->orderBy('id','desc')->paginate($this->valor);
+        
         return view('livewire.persona',['personas'=>$personas, 'tipos'=> $tiposPersona]);
     }
 
@@ -109,6 +111,17 @@ class Persona extends Component
     $p=DatosPersona::find($id);
     $p->delete();
     session()->flash('error', 'Dato eliminado');
+ }
+ public function storeTipo(){
+
+    $this->validate([
+        'ItiposPersona' => 'required',
+    ]);
+    TipoPersona::create([
+        'tipo'=> $this->ItiposPersona
+    ]);
+    session()->flash('successModal', 'Registro ingresado');
+    $this->ItiposPersona="";
  }
  
 }

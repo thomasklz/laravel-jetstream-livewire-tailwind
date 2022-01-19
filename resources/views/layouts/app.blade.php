@@ -8,6 +8,7 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
     <!-- Plantilla -->
+    {{-- <link rel="stylesheet" href="{{ asset('css/main.css?v=1628755089081') }}"> --}}
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"> 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     @livewireStyles
@@ -21,7 +22,12 @@
     </div>
     @stack('modals')
     @livewireScripts
-    
+    <script type="text/javascript">
+        window.livewire.on('userStore', () => {
+            $('#exampleModal').modal('hide');
+        });
+    </script>
+    {{-- <script type="text/javascript" src="{{ asset('js/main.min.js?v=1628755089081') }}"></script> --}}
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
 </body>
 </html>

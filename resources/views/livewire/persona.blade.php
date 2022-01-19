@@ -1,20 +1,32 @@
 <div class="bg-gray-300 w-full p-9  ">
+  @include('pages.tiposPersona')
   <form action="">
     @include('mensajes.success')
-    <div class="relative mt-1">
-      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-        </svg>
-      </div>
-      <select wire:model="tipopersona" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
-        <option value="0">Seleccione...</option>  
-        @foreach($tipos as $key => $value)
-          <option value="{{ $value->id }}">{{ $value->tipo }}</option>  
-        @endforeach    
-      </select>
+    <div class="flex">
+    <div class="relative mt-1  w-11/12 mr-2">
+        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+          </svg>
+        </div>
+        <select wire:model="tipopersona" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
+          <option value="0">Seleccione el tipo...</option>  
+          @foreach($tipos as $key => $value)
+            <option value="{{ $value->id }}">{{ $value->tipo }}</option>  
+          @endforeach    
+        </select>
     </div>
+    <div class="w-1/12 rounded">
+      <button type="button" data-modal-toggle="defaultModal" class="bg-green-500 text-teal-50 text-5xl rounded p-1 w-full h-full">
+        <span class="flex items-center justify-center text-lg text-teal-50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+          </svg>
+      </span>
+      </button>
+    </div>
+  </div>
     <div class="relative mt-1">
       <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
         <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
@@ -217,4 +229,7 @@
     </div>
     {{ $personas->links() }}
   </div>
+
+ 
+
 </div>
