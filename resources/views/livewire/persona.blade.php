@@ -1,5 +1,5 @@
 <div class="bg-gray-300 w-full p-9  ">
-  @include('pages.tiposPersona')
+  @include('pages.tipos-persona.tiposPersona')
   <form action="">
     @include('mensajes.success')
     <div class="flex">

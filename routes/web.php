@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     Route::get('/', function () { return view('dashboard');})->name('dashboard');
-    Route::get('/persona', function () { return view('pages.persona');});
+    Route::get('/persona', function () { return view('pages.persona.persona');});
+    Route::get('/tipos/persona', function () { return view('pages.tipos-persona.tipos-persona');});
     Route::get('/plantilla', function () { return view('pages.plantilla');})->name('plantilla');
 });
 

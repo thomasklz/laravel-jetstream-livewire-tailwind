@@ -23,7 +23,7 @@
 					<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Ingresos</span>
 				</li>
                 <li class="my-px">
-					<a href="#"
+					<a href="{{ url('tipos/persona') }}"
 					   class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
 						<span class="flex items-center justify-center text-lg text-gray-400">
 							<svg fill="none"
